@@ -12,7 +12,7 @@ class Audition(Base):
     actor = Column(String)
     location = Column(String)
     phone = Column(Integer)
-    hired = Column(Boolean, default=False)  # Default to False
+    hired = Column(Boolean, default=False) 
     role_id = Column(Integer, ForeignKey("roles.id"))
 
     role = relationship("Role", back_populates="auditions")
