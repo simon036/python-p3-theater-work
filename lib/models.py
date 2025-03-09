@@ -2,7 +2,6 @@ from sqlalchemy import ForeignKey, Column, Integer, String, Boolean
 from sqlalchemy.orm import relationship, declarative_base, sessionmaker
 from sqlalchemy import create_engine
 
-# Define the base class
 Base = declarative_base()
 
 class Audition(Base):
