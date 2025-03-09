@@ -42,15 +42,14 @@ class Role(Base):
         hired_auditions = [audition for audition in self.auditions if audition.hired]
         return hired_auditions[1] if len(hired_auditions) > 1 else "no actor has been hired for understudy for this role."
 
-# Create the database engine
+
 engine = create_engine("sqlite:///theater.db")
 Base.metadata.create_all(engine)
 
-# Create a session
+
 Session = sessionmaker(bind=engine)
 session = Session()
 
-# Add data to the database
 role = Role(character_name="Simon")
 
 audition1 = Audition(actor="Morgan Freeman", location="L.A California", phone=123456789, role=role)
@@ -61,13 +60,12 @@ session.add(audition1)
 session.add(audition2)
 session.commit()
 
-# Test the methods
-print(role.actors())  # Output: ['Morgan Freeman', 'Denzel Washington']
-print(role.locations())  # Output: ['L.A California', 'L.A California']
 
-# Hire Morgan Freeman
+print(role.actors())  
+print(role.locations())
+
 audition1.call_back()
 session.commit()
 
-print(role.lead())  # Output: <Audition object at 0x7f8b1c2b3d90>
-print(role.understudy())  # Output: 'no actor has been hired for understudy for this role'
+print(role.lead())  
+print(role.understudy())  
