@@ -12,11 +12,11 @@ class Audition(Base):
     __tablename__ = "auditions"
 
     id = Column(Integer, primary_key=True)
-    actor = Column(String)  # Name of the actor auditioning
-    location = Column(String)  # Location of the audition
-    phone = Column(Integer)  # Contact phone number of the actor
-    hired = Column(Boolean, default=False)  # Whether the actor was hired
-    role_id = Column(Integer, ForeignKey("roles.id"))  # Foreign key to the Role model
+    actor = Column(String)
+    location = Column(String)  
+    phone = Column(Integer)  
+    hired = Column(Boolean, default=False)  
+    role_id = Column(Integer, ForeignKey("roles.id"))  
 
     role = relationship("Role", back_populates="auditions")  # Relationship to the Role model
 
@@ -28,9 +28,9 @@ class Role(Base):
     __tablename__ = "roles"
 
     id = Column(Integer, primary_key=True)
-    character_name = Column(String)  # Name of the character in the role
+    character_name = Column(String)  
 
-    auditions = relationship("Audition", back_populates="role")  # Relationship to the Audition model
+    auditions = relationship("Audition", back_populates="role") 
 
     def actors(self):
         return [audition.actor for audition in self.auditions]  # Returns a list of actors auditioning for this role
